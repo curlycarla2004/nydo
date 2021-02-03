@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <title>{% block title %}NYDO – Starému hnízdečku dáváme novou tvář{% endblock %}</title>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description" content="Personal Website Template">
+
+        <meta name="keywords" content="Personal, Website Template, Minimal HTML Template, Freelancer">
+        <meta name="author" content="khai tawng">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/v4-shims.css">
+
+        <!-- Main css -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+
+        {% endblock %}
+    </head>
+        <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+        <!-- PRE LOADER -->
+        <div class="preloader">
+            <div class="spinner">
+                <span class="spinner-rotate"></span>
+            </div>
+        </div>
+
+        {#Header#}
+        {% include 'site/header.html.twig' %}
+
+        {% block body %}
+        
+        {% endblock %}
+        
+
+        <!-- START SCROLL TO TOP  -->
+        <div class="scrollup">
+            <a href="#"><i class="fa fa-chevron-up"></i></a>
+        </div>
+
+        {% block javascripts %}
+
+        <!-- SCRIPTS -->
+        <script src="{{ asset('js/jquery.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+        <script src="{{ asset('js/smoothscroll.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/carousel.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/jquery.magnific-popup.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/magnific-popup-options.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/wow.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/dz.ajax.js') }}"></script><!-- Contact Us --> 
+
+        <script>
+
+        jQuery(document).ready(function() {
+
+            var input = document.getElementById('lastname');
+            input.oninvalid = function(event) {
+                event.target.setCustomValidity('Příjmení je povinné!');
+            }
+             var input = document.getElementById('firstname');
+            input.oninvalid = function(event) {
+                event.target.setCustomValidity('Jméno je povinné!');
+            }
+             var input = document.getElementById('email');
+            input.oninvalid = function(event) {
+                event.target.setCustomValidity('Email je povinný!');
+            }
+             var input = document.getElementById('subject');
+            input.oninvalid = function(event) {
+                event.target.setCustomValidity('Předmět je povinný!');
+            }
+             var input = document.getElementById('message');
+            input.oninvalid = function(event) {
+                event.target.setCustomValidity('Zpráva je povinná!');
+            }
+        });	/*ready*/
+        </script>
+
+        
+        {% endblock %}
+    </body>
+</html>
+
+<!-- Příjmení je povinné
+Email je povinný
+Předmět je povinný
+Zpráva je povinná -->
