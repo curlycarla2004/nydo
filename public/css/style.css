@@ -5,7 +5,7 @@ body {
   background: #ffffff;
   font-family: 'Muli', sans-serif;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 200;
   overflow-x: hidden;
 }
 
@@ -48,7 +48,7 @@ h4 {
 p {
     color: #878787;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 200;
     line-height: 25px;
     letter-spacing: 0.2px;
 }
@@ -125,7 +125,7 @@ a:hover, a:active, a:focus {
 #about, #work,
 #contact {
   position: relative;
-  padding-top: 80px;
+  padding-top: 120px;
   padding-bottom: 80px;
 }
 
@@ -212,10 +212,10 @@ a:hover, a:active, a:focus {
 }
 
 .custom-navbar .nav li a {
-  font-size: 15px;
-  font-weight: normal;
+  font-size: 16px;
+  /* font-weight: normal; */
   color: #656565;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
   -webkit-transition: all ease-in-out 0.4s;
   transition: all ease-in-out 0.4s;
   padding: 0;
@@ -273,7 +273,7 @@ a:hover, a:active, a:focus {
     .custom-navbar.top-nav-collapse {
       background: #ffffff;
       box-shadow:0 40px 100px rgba(0,0,0,.2);
-      padding: 10px 0;
+      padding: 15px 0;
     }
 
 }

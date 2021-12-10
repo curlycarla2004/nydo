@@ -1,0 +1,72 @@
+easy_admin:
+
+  site_name: 'NYDO'
+    # On définit l'affichage de l'utilisateur
+  user:
+    name_property_path: 'email'
+    display_name: true
+    display_avatar: false
+
+  design:
+        # Ces lignes sont utiles pour CKEditor
+      form_theme:
+          - '@EasyAdmin/form/bootstrap_4.html.twig'
+          - '@VichUploader/Form/fields.html.twig'
+          - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+      menu:
+          - { label: Back to your website, icon: arrow-left, route: home}
+
+          - { entity: 'Articles', label: 'Articles', icon: 'book'}
+          - { entity: 'Contact', label: 'Contact', icon: 'id-card'}
+       
+
+  entities:
+    Articles:
+      class: App\Entity\Articles  
+      list:
+        fields: 
+          - { property: 'featured_image', title: 'title', label: 'Image', type: 'image', base_path: '%app.path.featured_images%'}
+          # - { property: 'active', label: Published, type: 'toggle'}
+          - { property: 'date_creation', label: Crée}
+          - { property: 'title', label: Title}
+          - { property: 'text', label: Contenu }
+          - { property: 'author', label: Author}
+          - { property: 'attachments', title: 'Images'}
+        collapse_actions: true
+        actions: ['show', 'edit', 'delete']
+        batch_actions: ['delete']
+          
+          
+      form:
+        fields:
+          - title
+          - author
+          - { property: 'text', type: 'fos_ckeditor', type_options: {config_name: 'main_config' }}
+          - { property: 'imageFile', template: 'article.html.twig', type: 'vich_image', label: 'Image', css_class: 'col-lg-5'} 
+          - { property: 'attachments', type: 'collection', type_options: {entry_type: 'App\Form\AttachmentType', by_reference: false} }
+       
+    
+      templates:
+          edit: 'easyadmin/articles/edit.html.twig'
+      
+      show:
+        fields:
+          - { property: 'title', label: Title}
+          - { property: 'text', label: Contenu }
+          - { property: 'author', label: Author}
+          - { property: 'featured_image', title: 'title', label: 'Image on home screen', type: 'image', base_path: '%app.path.featured_images%'}
+          # - { property: 'active', label: Published, type: 'toggle'}
+          - { property: 'date_creation', label: Crée}
+          - { property: 'attachments', template: 'images.html.twig', label: 'Images in articles'}
+    
+          
+    Contact:
+      class: App\Entity\Contact
+      disabled_actions: [new, edit]
+
+    
+
+  
+
+
+        

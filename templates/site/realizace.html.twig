@@ -1,113 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}NYDO – Starému hnízdečku dáváme novou tvář{% endblock %}
- 
+{% block title %}{{ article.title }}{% endblock %}
+{% block description %}{{ article.text|raw }}{% endblock %}
+
 {% block body %}
-<br>
-<br>
-<br>
-<br>
+
 <section id="realizace">
-    <div class="container" id="content-wrap">
-        <div class="row">
-            <div class="col-md-5 col-xs-12">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                    </ol>
-                
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="{{ asset('images/work-1.jpg') }}" alt="Chania">
-                    </div>
-                
-                    <div class="item">
-                        <img src="{{ asset('images/work-2.jpg') }}" alt="Chania">
-                    </div>
-                
-                    <div class="item">
-                        <img src="{{ asset('images/work-3.jpg') }}" alt="Flower">
-                    </div>
-                
-                    <div class="item">
-                        <img src="{{ asset('images/work-4.jpg') }}" alt="Flower">
-                    </div>
-                    </div>
-                
-                    <!-- Left and right controls -->
-                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left fas fa-angle-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right fas fa-angle-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-7 col-xs-12">
-                <h2 class="text-center">Project heading</h2>
-                <p class="text-center">Project text
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                    It has survived not only five centuries, but also the leap into electronic typesetting, 
-                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset 
-                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
-                    like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-                <p class="text-center">Project text
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                    It has survived not only five centuries, but also the leap into electronic typesetting, 
-                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset 
-                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
-                    like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-               
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- <section class="module">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-md-8 col-lg-8">
-          <div class="post-images-slider">
-            <ul class="slides">
-              <li><img class="center-block" src="assets/images/work-1.jpg" alt="Slider Image"/></li>
-              <li><img class="center-block" src="assets/images/work-2.jpg" alt="Slider Image"/></li>
-              <li><img class="center-block" src="assets/images/work-4.jpg" alt="Slider Image"/></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-          <div class="work-details">
-            <h5 class="work-details-title font-alt">Project Details</h5>
-            <p>The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.</p>
-            <ul>
-              <li><strong>Client: </strong><span class="font-serif"><a href="#" target="_blank">SomeCompany</a></span>
-              </li>
-              <li><strong>Date: </strong><span class="font-serif"><a href="#" target="_blank">23 November, 2015</a></span>
-              </li>
-              <li><strong>Online: </strong><span class="font-serif"><a href="#" target="_blank">www.example.com</a></span>
-              </li>
-            </ul>
-          </div>
-        </div>
+  <div class="container" id="content-wrap">
+  
+    <div class="row">
+      <div class="project-heading col-md-12">
+        <h1 class="articles text-center">{{ article.title }}</h1>
       </div>
     </div>
-</section> -->
- {#Footer#}
- {% include 'site/footer-realizace.html.twig' %}
+    
+      <div class="row pt-5">
+        <div class="col-md-7 col-xs-12">
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Carousel indicators -->
+              <ol class="carousel-indicators">
+                  {% for image in article.attachments %}
+                  <li data-target="#carousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" {% endif %}></li>
+                  {% endfor %}
+              </ol>
+          
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox">
+              {% for image in article.attachments %}
+                <div {% if loop.index0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
+                      <img src="{{ asset('/uploads/images/attachment/' ~ image.image) }}" class="img-responsive" alt="Work">
+                </div>
+                {% endfor %}
+              </div>
+          
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left fas fa-angle-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right fas fa-angle-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+              </a>
+          </div>
+        </div>
+        <div class="addPadding col-md-5 col-xs-12">
+            <p class="text-center">{{ article.text|raw }}</p>
+        </div>
+      </div>
+  </div>    
+</section>
 
+{#Footer#}
+{% include 'site/footer-realizace.html.twig' %}
 
 {% endblock %}

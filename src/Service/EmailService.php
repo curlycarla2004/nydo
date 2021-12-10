@@ -14,7 +14,7 @@ class EmailService{
     public function __construct(MailerInterface $mailer) 
     {
         $this->mailer = $mailer;
-        $this->mon_email = 'gergelovakarla@gmail.com';
+        $this->mon_email = 'nydo.development@gmail.com';
         $this->data = array (
             'from' => false,
             'to' =>false,
@@ -46,8 +46,8 @@ class EmailService{
 
     public function contact(Contact $contact){
         $data = array(
-            'from'=>'gergelovakarla@aol.com',
-            'subject' =>"Contact Portofolio KG",
+            'from'=>'nydo.development@gmail.com',
+            'subject' =>"Kontakt Nydo website",
             'template' =>'emails/contact.email.twig',
             'context' => ['contact' => $contact]
         );
